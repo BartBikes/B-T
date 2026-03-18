@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shinoffx</title>
+    <link rel="icon" type="image/png" href="https://static-00.iconduck.com/assets.00/firefox-developer-icon-1909x2048-l6oqiz3z.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Contador de visitas -->
+    <div id="visitor-counter">
+        <i class="fas fa-eye"></i>
+        <span id="visitor-count">0</span>
+    </div>
+
+    <div id="main-content">
+        <main>
+            <section class="profiles">
+                <div class="profile card" id="interactive-card">
+                    <img src="media/profile.jpg" alt="Profile Picture">
+                    <h2>Shinoffx</h2>
+                    <p>Melhores painéis para Free Fire!! ⛓️<br>Sem riscos de banimentos e qualidade garantida 😍</p>
+                    <div class="badges">
+                    </div>
+                    <div class="social-buttons">
+                        <div class="social-button-container">
+                            <a href="https://youtube.com/@shinoffx?si=4tUi5SzGE3KaL8Og" class="social-button youtube-btn">
+                                <i class="fab fa-youtube"></i>
+                                <span class="tooltip">YouTube</span>
+                            </a>
+                        </div>
+                        <div class="social-button-container">
+                            <a href="https://discord.com/invite/Cn5CRhPXq8" class="social-button discord-btn">
+                                <i class="fab fa-discord"></i>
+                                <span class="tooltip">Discord</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const card = document.getElementById("interactive-card");
+    
+    // Contador de visitas simples
+    let visitCount = localStorage.getItem('visitCount') || 0;
+    visitCount++;
+    localStorage.setItem('visitCount', visitCount);
+    document.getElementById('visitor-count').textContent = visitCount;
+    
+    // Animação do título (mais leve)
+    const titles = ["S", "Sh", "Shi", "Shin", "Shino", "Shinof", "Shinoff", "Shinoffx"];
+    let index = 0;
+    setInterval(function() {
+        document.title = titles[index];
+        index = (index + 1) % titles.length;
+    }, 500);
+    
+    // Efeito 3D do card (simplificado para dispositivos fracos)
+    if (window.innerWidth > 768) { // Só aplica em telas maiores
+        card.addEventListener('mousemove', function(e) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const xAxis = (x - centerX) / 30;
+            const yAxis = -(y - centerY) / 30;
+            
+            card.style.transform = `
+                perspective(600px)
+                rotateX(${yAxis}deg)
+                rotateY(${xAxis}deg)
+                scale(1.02)
+            `;
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            card.style.transform = 'perspective(600px) rotateX(0) rotateY(0) scale(1)';
+        });
+    }
+});
+    </script>
+</body>
+</html>
+
