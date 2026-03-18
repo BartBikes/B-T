@@ -1,10 +1,9 @@
-# Bio Page - Shinoffx (Versão Otimizada)
+# Bio Page -  (Versão Otimizada)
 
 Esta é sua bio page personalizada e otimizada para dispositivos fracos.
 
 ## ✨ Funcionalidades
 - ✅ **Entrada direta** - Sem tela de introdução
-- ✅ **Contador de visitas** - Mostra quantas pessoas visitaram
 - ✅ **Otimizado para dispositivos fraco** - Sem vídeo de fundo pesado
 - ✅ **Nova imagem de fundo** - Sua imagem personalizada
 - ✅ **Responsivo** - Funciona bem em celulares e tablets
