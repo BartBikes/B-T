@@ -20,9 +20,9 @@ align-items:center;
 height:100vh;
 }
 
-/* CARD MAIS LEVE */
+/* CARD */
 .profile{
-background: rgba(0,0,0,0.5); /* menos pesado */
+background: rgba(0,0,0,0.5);
 padding:25px;
 border-radius:15px;
 text-align:center;
@@ -42,6 +42,12 @@ transition:0.2s;
 
 .profile img:hover{
 transform:scale(1.05);
+}
+
+/* TEXTO */
+.profile p{
+font-size:13px;
+color:#ccc;
 }
 
 /* BOTÕES */
@@ -64,32 +70,33 @@ border:1px solid rgba(255,255,255,0.15);
 color:white;
 text-decoration:none;
 transition:0.2s;
+position:relative;
 }
 
+/* HOVER */
 .btn:hover{
 background: rgba(255,140,0,0.25);
 }
 
-/* BOTÃO SOM MAIS LEVE */
-.music-btn{
-position:fixed;
-bottom:15px;
-right:15px;
-width:50px;
-height:50px;
-border-radius:50%;
-background: rgba(0,0,0,0.6);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:20px;
-cursor:pointer;
-border:1px solid rgba(255,255,255,0.2);
+/* TOOLTIP */
+.btn::after{
+content: attr(data-tooltip);
+position:absolute;
+bottom:120%;
+left:50%;
+transform:translateX(-50%);
+background: rgba(0,0,0,0.8);
+padding:5px 8px;
+border-radius:5px;
+font-size:11px;
+opacity:0;
+pointer-events:none;
 transition:0.2s;
+white-space:nowrap;
 }
 
-.music-btn:hover{
-background: rgba(255,140,0,0.4);
+.btn:hover::after{
+opacity:1;
 }
 
 </style>
@@ -97,86 +104,42 @@ background: rgba(255,140,0,0.4);
 
 <body>
 
-<audio id="bg-music" loop autoplay>
-<source src="media/som de fundo.mp3" type="audio/mpeg">
-</audio>
-
-<div class="music-btn" id="musicBtn">
-<i class="fas fa-volume-up"></i>
-</div>
-
 <div class="profile">
 
 <img src="media/profileFF.jpg">
 
 <h2>Bart Bikes</h2>
 
-<p style="font-size:13px;color:#ccc;">
+<p>
 Nas ruas acelera, sem medo de cair,<br>
 Bart Bikes na pista, nasceu pra evoluir 🚴🔥
 </p>
 
 <div class="buttons">
 
-<a href="https://wa.me/5516988482780" class="btn">
+<a href="https://wa.me/5516988482780" class="btn" data-tooltip="Falar no WhatsApp">
 <i class="fab fa-whatsapp"></i> WhatsApp
 </a>
 
-<a href="https://instagram.com/BAART_BIKES" class="btn">
+<a href="https://instagram.com/BAART_BIKES" class="btn" data-tooltip="Ver Instagram">
 <i class="fab fa-instagram"></i> Instagram
 </a>
 
-<a href="mailto:BART.SIMP@GMAIL.COM" class="btn">
+<a href="mailto:BART.SIMP@GMAIL.COM" class="btn" data-tooltip="Enviar Email">
 <i class="fas fa-envelope"></i> Email
 </a>
 
-<a href="https://maps.google.com/?q=Rua São Francisco, 176B" class="btn">
+<a href="https://maps.google.com/?q=Rua São Francisco, 176B" class="btn" data-tooltip="Abrir localização">
 <i class="fas fa-map-marker-alt"></i> Endereço
 </a>
 
-<a href="https://www.bartbike.com.br" class="btn">
+<a href="https://www.bartbike.com.br" class="btn" data-tooltip="Abrir site oficial">
 <i class="fas fa-globe"></i> Site
 </a>
 
 </div>
 
 </div>
-
-<script>
-
-const music = document.getElementById("bg-music");
-const btn = document.getElementById("musicBtn");
-
-let started = false;
-
-// tenta autoplay (pc)
-window.onload = () => {
-    music.volume = 0.4;
-    music.play().catch(()=>{});
-};
-
-// celular ativa no toque
-document.addEventListener("click", () => {
-    if(!started){
-        music.play();
-        started = true;
-    }
-}, { once:true });
-
-// botão
-btn.onclick = (e) => {
-    e.stopPropagation();
-
-    if(music.paused){
-        music.play();
-        btn.innerHTML = '<i class="fas fa-volume-up"></i>';
-    } else {
-        music.pause();
-        btn.innerHTML = '<i class="fas fa-volume-mute"></i>';
-    }
-};
-
-</script>
 
 </body>
 </html>
