@@ -20,6 +20,16 @@ align-items:center;
 height:100vh;
 }
 
+/* PARTICLES FUNDO */
+#tsparticles{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-1;
+}
+
 /* CARD */
 .profile{
 background: rgba(0,0,0,0.5);
@@ -104,6 +114,9 @@ opacity:1;
 
 <body>
 
+<!-- FUNDO DAS PARTICLES -->
+<div id="tsparticles"></div>
+
 <div class="profile">
 
 <img src="media/profileFF.jpg">
@@ -118,41 +131,67 @@ opacity:1;
 
 <div class="buttons">
 
-<!-- 1 - WHATSAPP (PRINCIPAL) -->
 <a href="https://wa.me/5516988482780" class="btn" data-tooltip="Falar no WhatsApp">
 <i class="fab fa-whatsapp"></i> WhatsApp
 </a>
 
-<!-- 2 - INSTAGRAM -->
 <a href="https://instagram.com/BAART_BIKES" class="btn" data-tooltip="Ver Instagram">
 <i class="fab fa-instagram"></i> Instagram
 </a>
 
-<!-- 3 - FACEBOOK -->
 <a href="https://www.facebook.com/willian.aragao.733/" class="btn" data-tooltip="Abrir Facebook">
 <i class="fab fa-facebook"></i> Facebook
 </a>
 
-<!-- 4 - LOJA -->
-<a href="https://bartbike.lojavirtualnuvem.com.br/?utm_source=ig&utm_medium=social&utm_content=link_in_bio" class="btn" data-tooltip="Abrir loja online">
+<a href="https://bartbike.lojavirtualnuvem.com.br/" class="btn" data-tooltip="Abrir loja online">
 <i class="fas fa-store"></i> Loja Online
 </a>
 
-<!-- 5 - ENDEREÇO -->
 <a href="https://www.google.com/maps/search/?api=1&query=Rua+Sao+Francisco,+Franca,+Brazil+14403390" class="btn" data-tooltip="Abrir no GPS">
 <i class="fas fa-map-marker-alt"></i> Endereço
 </a>
 
-<!-- 6 - EMAIL -->
 <a href="mailto:BART.SIMP@GMAIL.COM" class="btn" data-tooltip="Enviar Email">
 <i class="fas fa-envelope"></i> Email
 </a>
 
-
-
+</div>
 </div>
 
-</div>
+<!-- SCRIPT PARTICLES -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+<script>
+tsParticles.load("tsparticles", {
+  particles: {
+    number: {
+      value: 10
+    },
+    move: {
+      enable: true,
+      speed: 1.2,
+      outModes: "bounce"
+    },
+    shape: {
+      type: "image",
+      image: {
+        src: "https://cdn-icons-png.flaticon.com/512/2972/2972185.png",
+        width: 60,
+        height: 60
+      }
+    },
+    size: {
+      value: 25
+    },
+    opacity: {
+      value: 0.8
+    }
+  },
+  background: {
+    color: "transparent"
+  }
+});
+</script>
 
 </body>
 </html>
