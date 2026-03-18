@@ -13,12 +13,9 @@ body{
 margin:0;
 font-family:Arial;
 color:white;
-
-/* FUNDO CORRETO */
 background:url("media/backgroundFF.png");
 background-size:cover;
 background-position:center;
-
 display:flex;
 justify-content:center;
 align-items:center;
@@ -33,7 +30,6 @@ padding:30px;
 border-radius:20px;
 text-align:center;
 width:320px;
-transition:0.3s;
 box-shadow:0 10px 30px rgba(0,0,0,0.6);
 }
 
@@ -81,7 +77,6 @@ transition:0.3s;
 position:relative;
 }
 
-/* HOVER LARANJA */
 .btn:hover{
 background: rgba(255,140,0,0.3);
 transform:scale(1.05);
@@ -106,14 +101,46 @@ transition:0.3s;
 opacity:1;
 }
 
+/* BOTÃO DE SOM */
+.music-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+width:55px;
+height:55px;
+border-radius:50%;
+background: rgba(0,0,0,0.6);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+border:1px solid rgba(255,255,255,0.2);
+transition:0.3s;
+}
+
+.music-btn:hover{
+background: rgba(255,140,0,0.4);
+transform:scale(1.1);
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- AUDIO -->
+<audio id="bg-music" loop>
+<source src="media/som de fundo.mp3" type="audio/mpeg">
+</audio>
+
+<!-- BOTÃO -->
+<div class="music-btn" id="musicBtn">
+<i class="fas fa-microphone-slash"></i>
+</div>
+
 <div class="profile">
 
-<!-- FOTO CORRETA -->
 <img src="media/profileFF.jpg">
 
 <h2>Bart Bikes</h2>
@@ -148,6 +175,31 @@ Bart Bikes na pista, nasceu pra evoluir 🚴🔥
 </div>
 
 </div>
+
+<script>
+
+const music = document.getElementById("bg-music");
+const btn = document.getElementById("musicBtn");
+let playing = false;
+
+// TENTATIVA DE AUTO PLAY (PC)
+window.addEventListener("load", () => {
+    music.volume = 0.5;
+});
+
+// CLIQUE (FUNCIONA EM CELULAR)
+btn.addEventListener("click", () => {
+    if(playing){
+        music.pause();
+        btn.innerHTML = '<i class="fas fa-microphone-slash"></i>';
+    } else {
+        music.play();
+        btn.innerHTML = '<i class="fas fa-microphone"></i>';
+    }
+    playing = !playing;
+});
+
+</script>
 
 </body>
 </html>
